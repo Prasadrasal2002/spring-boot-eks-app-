@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-eks-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: springboot-eks-app
+  template:
+    metadata:
+      labels:
+        app: springboot-eks-app
+    spec:
+      containers:
+      - name: springboot-eks-app
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/springboot-eks-app:latest
+        ports:
+        - containerPort: 8080
